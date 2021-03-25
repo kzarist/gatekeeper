@@ -1,0 +1,35 @@
+from gatekeeper import GateKeeper, XmppKeeper, DiscordKeeper
+
+if __name__ == "__main__":
+    # GateKeeper instance
+    gatekeeper = GateKeeper()
+
+    ## Discord config
+    # channel webhook url
+    webhook_url = "https://canary.discord.com/api/webhooks/..."
+    # bot token
+    token = "<TOKEN>"
+    # channel id
+    discord_channel = 1234
+
+    # DiscordKeeper instance
+    discord = DiscordKeeper(discord_channel, webhook_url, gatekeeper)
+
+    ## XMPP config
+
+    # bot jid
+    jid = "gatekeeper@kalli.st"
+    # bot password
+    password = "asdfghjkl"
+    # muc nickname
+    nick = "_"
+    # muc jid
+    xmpp_channel = "test@muc.kalli.st"
+
+    # XmppKeeper instance
+    xmpp = XmppKeeper(nick, xmpp_channel, gatekeeper, jid=jid, password=password)
+
+    # run
+    xmpp.connect()
+    discord.run(token)
+    xmpp.process()

@@ -1,0 +1,4 @@
+discord.py
+slixmpp
+aiohttp
+discord
